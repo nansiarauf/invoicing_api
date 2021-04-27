@@ -6,4 +6,9 @@ const validateRegisterUser = new Joi.object({
   email: Joi.string().email().required(),
   password: Joi.string().required().min(8),
 });
-module.exports = { validateRegisterUser };
+
+const validateUserLogin = new Joi.object({
+  email: Joi.string().required().min(8),
+  password: Joi.string().required().min(8),
+});
+module.exports = { validateRegisterUser, validateUserLogin };

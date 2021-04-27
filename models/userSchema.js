@@ -1,7 +1,9 @@
 const mongoose = require("mongoose");
 
+//DESTRUCTURING MODEL AND SCHEMA FROM MONGOOSE
 const { model, Schema } = mongoose;
 
+//CREATING USER SCHEMA
 const userSchema = new Schema(
   {
     name: {
