@@ -28,4 +28,12 @@ const addClient = async (req, res) => {
   res.status(201).json(newClient);
 };
 
+//VIEW ALL CLIENTS
+const getAllClients = async (req, res) => {};
+
+//GET A CLIENT BY NAME/ID
+const getOneClient = async (req, res) => {};
+
+//DELETING A CLIENT
+const deleteClient = async (req, res) => {};
 module.exports = { addClient };
