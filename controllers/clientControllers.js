@@ -37,11 +37,39 @@ const getAllClients = async (req, res) => {
 //GET A CLIENT BY NAME/ID
 const getOneClient = async (req, res) => {
   const aClient = await Client.findById(req.params._id);
-  res.send(aClient);
+  if (aClient) {
+    res.send(aClient);
+  } else {
+    res
+      .status(404)
+      .json({ msg: `client with ID: ${req.params._id} not found` });
+  }
+};
+
+//UPDATE CLIENT INFO
+const updateClient = async (req, res) => {
+  //GET CLIENT BY ID TO UPDATE
+  const foundClient = await Client.findById(req.params._id);
+  if (foundClient) {
+    foundClient.name = req.body.name ? req.body.name : foundClient.name;
+    foundClient.businessName = req.body.businessName
+      ? req.body.businessName
+      : foundClient.businessName;
+    foundClient.email = req.body.email ? req.body.email : foundClient.email;
+    foundClient.phone = req.body.phone ? req.body.phone : foundClient.phone;
+    foundClient.address = req.body.address
+      ? req.body.address
+      : foundClient.address;
+
+    //ASSIGN UPDATED CLIENT INFO TO A VARIABLE AND SAVE UPDATES
+    const updatedClient = foundClient.save();
+    res.json({ updatedClient: updateClient });
+  }
 };
 
 //DELETING A CLIENT
 const deleteClient = async (req, res) => {
+  //CHECKING FOR CLIENT USING ID
   const foundClient = await Client.findById(req.params._id);
   if (foundClient) {
     foundClient.remove();
@@ -52,4 +80,10 @@ const deleteClient = async (req, res) => {
       .json({ msg: `client with ID: ${req.params._id} not found` });
   }
 };
-module.exports = { addClient, getAllClients, getOneClient, deleteClient };
+module.exports = {
+  addClient,
+  getAllClients,
+  getOneClient,
+  deleteClient,
+  updateClient,
+};

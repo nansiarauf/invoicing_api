@@ -19,8 +19,8 @@ app.use(morgan("dev"));
 
 //ROUTES
 app.use("/api/v1/user", userRoutes);
-app.use("/api/v1/user", invoiceRoutes);
-app.use("/api/v1/user", clientRoutes);
+app.use("/api/v1/user/inoice", invoiceRoutes);
+app.use("/api/v1/user/clients", clientRoutes);
 
 app.get("/", (req, res) => {
   res.send("Invoicing and payment reminder API");
