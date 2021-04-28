@@ -54,12 +54,18 @@ const loginUser = async (req, res) => {
   if (!verifiedPassword)
     return res.status(404).send("Invalid Email or Password");
 
-  //ASSIGN TOKEN
+  //ASSIGN TOKEN AND REDIRECT USER TO DASHBOARD
   const token_id = jwt.sign({ _id: user._id }, process.env.SECRET_KEY, {
     expiresIn: "20d",
   });
   res.header("authorization", token_id).send(token_id);
   res.send("you are logged in");
+  res.redirect("/dashboard");
+};
+
+//LOGOUT USER
+const logOutUser = async (req, res) => {
+  res.redirect("/login");
 };
 
 module.exports = { registerUser, loginUser };

@@ -1,16 +1,15 @@
-const { required, string } = require("joi");
 const mongoose = require("mongoose");
 
 //DESTRUCTURING MODEL AND SCHEMA FROM MONGOOSE
-const { model, schema } = mongoose;
+const { model, Schema } = mongoose;
 
-const invoiceSchema = new schema(
+const invoiceSchema = new Schema(
   {
     businessName: {
       type: String,
     },
     name: {
-      type: string,
+      type: String,
       required: true,
     },
     service: {

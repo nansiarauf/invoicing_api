@@ -15,7 +15,7 @@ const createInvoice = async (req, res) => {
     service: req.body.service,
     amount_due: req.body.amount_due,
     email: req.body.email,
-    remindate_date: req.body.remindate_date,
+    reminder_date: req.body.reminder_date,
   });
   await newInvoice.save();
   res.status(201).json(newInvoice);

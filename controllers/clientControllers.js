@@ -1,4 +1,4 @@
-const Client = required("../models/clientSchema");
+const Client = require("../models/clientSchema");
 const { clientValidation } = require("../utils/clientValidation");
 
 //ADD NEW CLIENT CONTROLLER
@@ -29,11 +29,27 @@ const addClient = async (req, res) => {
 };
 
 //VIEW ALL CLIENTS
-const getAllClients = async (req, res) => {};
+const getAllClients = async (req, res) => {
+  const clients = await Client.find();
+  res.send(clients);
+};
 
 //GET A CLIENT BY NAME/ID
-const getOneClient = async (req, res) => {};
+const getOneClient = async (req, res) => {
+  const aClient = await Client.findById(req.params._id);
+  res.send(aClient);
+};
 
 //DELETING A CLIENT
-const deleteClient = async (req, res) => {};
-module.exports = { addClient };
+const deleteClient = async (req, res) => {
+  const foundClient = await Client.findById(req.params._id);
+  if (foundClient) {
+    foundClient.remove();
+    res.json({ msg: `client with ID: ${req.params._id} deleted` });
+  } else {
+    res
+      .status(404)
+      .json({ msg: `client with ID: ${req.params._id} not found` });
+  }
+};
+module.exports = { addClient, getAllClients, getOneClient, deleteClient };

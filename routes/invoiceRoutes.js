@@ -1,8 +1,8 @@
 const express = require("express");
-const { addClient } = require("../controllers/clientControllers");
+const { createInvoice } = require("../controllers/invoiceController");
 const protectRoute = require("../middleware/userAuth");
 const router = express.Router();
 
-router.route("/addclient").post(protectRoute, addClient);
+router.route("/newinvoice").post(protectRoute, createInvoice);
 
 module.exports = router;

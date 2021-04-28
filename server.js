@@ -2,6 +2,8 @@ const express = require("express");
 const dbConnect = require("./config/dbConnect");
 const dotenv = require("dotenv");
 const userRoutes = require("./routes/userRoutes");
+const invoiceRoutes = require("./routes/invoiceRoutes");
+const clientRoutes = require("./routes/clientRoutes");
 const morgan = require("morgan");
 
 const app = express();
@@ -17,6 +19,8 @@ app.use(morgan("dev"));
 
 //ROUTES
 app.use("/api/v1/user", userRoutes);
+app.use("/api/v1/user", invoiceRoutes);
+app.use("/api/v1/user", clientRoutes);
 
 app.get("/", (req, res) => {
   res.send("Invoicing and payment reminder API");
