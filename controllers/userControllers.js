@@ -64,7 +64,6 @@ const loginUser = async (req, res) => {
   });
   res.header("authorization", token_id).send(token_id);
   res.send("you are logged in");
-  res.redirect("/dashboard");
 };
 
 //LOGOUT USER
