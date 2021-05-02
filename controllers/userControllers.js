@@ -1,6 +1,7 @@
 const User = require("../models/userSchema");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser");
 const {
   validateRegisterUser,
   validateUserLogin,
@@ -33,7 +34,10 @@ const registerUser = async (req, res) => {
     businessName: req.body.businessName,
   });
   await newUser.save();
-  res.status(201).json(newUser);
+  //ASSIGN TOKEN AFTER REGISTERING USER
+  const token = token_id(user._id);
+  res.cookie("jwt", token, { httpOnly: true });
+  res.status(201).json({ newUser: user._id });
 };
 
 //LOGIN USER

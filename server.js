@@ -5,6 +5,7 @@ const userRoutes = require("./routes/userRoutes");
 const invoiceRoutes = require("./routes/invoiceRoutes");
 const clientRoutes = require("./routes/clientRoutes");
 const morgan = require("morgan");
+const cookieParser = require("cookie-parser");
 
 const app = express();
 //USING ENVIRONMENT VARIABLES
@@ -16,6 +17,7 @@ dbConnect();
 //MIDDLEWARE
 app.use(express.json());
 app.use(morgan("dev"));
+app.use(cookieParser());
 
 //ROUTES
 app.use("/api/v1/user", userRoutes);

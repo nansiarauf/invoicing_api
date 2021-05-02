@@ -25,6 +25,7 @@ const clientSchema = new Schema(
       type: String,
       required: true,
     },
+    clientOf: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   },
   { timestamps: true }
 );
